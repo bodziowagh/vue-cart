@@ -2,8 +2,19 @@
   <div class="item-list">
     <h1>{{ header }}</h1>
 
+    <div v-if="!items.length">
+      The list is empty
+    </div>
+
+    <div v-if="loading">
+      Loading...
+    </div>
+
     <div class="item-container" v-for="item in items">
-      <item-tile  v-bind:item="item" />
+      <item-tile
+        v-bind:item="item"
+        v-bind:onSelectCallback="onSelectCallback"
+      />
     </div>
   </div>
 </template>
@@ -19,25 +30,22 @@
     data() {
       return {
         header: 'Item list',
-        items: [
-          {
-            name: 'My item 1',
-            image: 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg',
-          }, {
-            name: 'My item 2',
-            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg',
-          }, {
-            name: 'My item 3',
-            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg',
-          }, {
-            name: 'My item 4',
-            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg',
-          }, {
-            name: 'My item 5',
-            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg',
-          },
-        ],
+        onSelectCallback: (item) => {
+          const selectedItem = item;
+
+          selectedItem.selected = !item.selected;
+        },
       };
+    },
+    props: {
+      items: {
+        type: Array,
+        default: [],
+      },
+      loading: {
+        type: Boolean,
+        default: false,
+      },
     },
   };
 </script>

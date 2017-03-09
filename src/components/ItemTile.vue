@@ -1,5 +1,5 @@
 <template>
-  <div class="item-tile">
+  <div class="item-tile" v-bind:class="{ 'selected': item.selected }" v-on:click="() => onSelectCallback(item)">
     <div class="name" v-text="item.name" />
     <div class="image-container">
       <img v-bind:src="item.image" />
@@ -13,10 +13,9 @@
     props: {
       item: {
         type: Object,
-        default: () => ({
-          name: '',
-          image: '',
-        }),
+      },
+      onSelectCallback: {
+        type: Function,
       },
     },
   };
@@ -26,18 +25,27 @@
   .item-tile {
     background-color: #ddd;
     display: inline-block;
+    cursor: pointer;
     padding: 10px;
     width: 200px;
+    opacity: 0.7;
 
     transition: 500ms;
   }
 
   .item-tile:hover {
     background-color: #aaa;
+    opacity: 1;
+
     transition: 500ms;
   }
 
-  .name {
+  .selected {
+    background-color: #aaa;
+    opacity: 1;
+  }
+
+  .item-tile .name {
     background-color: #eee;
     font-size: 24px;
     font-weight: bold;
@@ -45,11 +53,13 @@
     width: 100%;
   }
 
-  .image-container {
+  .item-tile .image-container {
     padding-top: 10px;
+    height: 150px;
   }
 
-  .image-container img {
+  .item-tile  .image-container img {
     width: 100%;
+    height: 100%;
   }
 </style>
