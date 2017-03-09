@@ -4,7 +4,11 @@
     <item-list v-bind:items="items" v-bind:loading="false" />
 
     <div class="actions">
-      <button class="submit-button" v-on:click="() => submitItems(items)">
+      <button
+        class="submit-button"
+        v-bind:disabled="isSubmitDisabled"
+        v-on:click="() => submitItems(items)"
+      >
         Submit
       </button>
     </div>
@@ -53,6 +57,11 @@
         console.log(items.filter(item => item.selected));
       },
     },
+    computed: {
+      isSubmitDisabled: function () {
+        return !this.items.filter(item => item.selected).length;
+      },
+    },
   };
 </script>
 
@@ -99,5 +108,10 @@
     background-color: #999;
 
     transition: none;
+  }
+
+  .actions button:disabled {
+    cursor: default;
+    opacity: 0.7;
   }
 </style>

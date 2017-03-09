@@ -1,7 +1,11 @@
 <template>
   <div class="menu">
-    <router-link to="/item-list" class="tab">Item List</router-link>
-    <router-link to="/item-cart" class="tab">Item Cart</router-link>
+    <router-link to="/item-list" class="tab">
+      Item List
+    </router-link>
+    <router-link to="/item-cart" class="tab">
+      Item Cart
+    </router-link>
   </div>
 </template>
 
@@ -13,12 +17,13 @@
 
 <style scoped>
   .menu {
-    padding: 50px 0;
+    background-color: #ddd;
   }
 
   .menu .tab {
-    background-color: #ddd;
+    background-color: #ccc;
     color: #000;
+    padding: 15px 0;
     text-decoration: none;
     display: inline-block;
     width: 49%;
@@ -26,6 +31,10 @@
     font-size: 26px;
 
     transition: 500ms;
+  }
+
+  .router-link-active {
+    font-weight: bold;
   }
 
   .menu .tab:hover {
