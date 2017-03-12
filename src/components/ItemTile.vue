@@ -1,5 +1,9 @@
 <template>
-  <div class="item-tile" v-bind:class="{ 'selected': item.selected }" v-on:click="() => onSelectCallback(item)">
+  <div
+    class="item-tile"
+    v-bind:class="{ 'selected': item.selected }"
+    v-on:click="() => onSelect(item)"
+  >
     <div class="name" v-text="item.name" />
     <div class="image-container">
       <img v-bind:src="item.image" />
@@ -10,6 +14,13 @@
 <script>
   export default {
     name: 'item-tile',
+    methods: {
+      onSelect: function () {
+        if (this.onSelectCallback) {
+          this.onSelectCallback(this.item);
+        }
+      },
+    },
     props: {
       item: {
         type: Object,
