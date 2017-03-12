@@ -3,7 +3,7 @@
     <h1>Please select items from the list below:</h1>
     <item-list v-bind:items="items" v-bind:loading="false" />
 
-    <div class="actions">
+    <div class="actions row">
       <button
         class="submit-button"
         v-bind:disabled="isSubmitDisabled"
@@ -46,6 +46,34 @@
             selected: false,
             name: 'My item 5',
             image: 'https://i.ytimg.com/vi/lUaNo_L7AKU/hqdefault.jpg',
+          }, {
+            selected: false,
+            name: 'My item 5',
+            image: 'https://i.ytimg.com/vi/lUaNo_L7AKU/hqdefault.jpg',
+          }, {
+            selected: false,
+            name: 'My item 1',
+            image: 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg',
+          }, {
+            selected: false,
+            name: 'My item 2',
+            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg',
+          }, {
+            selected: false,
+            name: 'My item 3',
+            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/shop6.jpg',
+          }, {
+            selected: false,
+            name: 'My item 4',
+            image: 'https://assets.rbl.ms/4314213/980x.jpg',
+          }, {
+            selected: false,
+            name: 'My item 5',
+            image: 'https://i.ytimg.com/vi/lUaNo_L7AKU/hqdefault.jpg',
+          }, {
+            selected: false,
+            name: 'My item 5',
+            image: 'https://i.ytimg.com/vi/lUaNo_L7AKU/hqdefault.jpg',
           },
         ],
       };
@@ -73,7 +101,6 @@
 
   .actions {
     background-color: #ddd;
-    position: absolute;
     bottom: 0;
     width: 99%;
     height: 100px;
