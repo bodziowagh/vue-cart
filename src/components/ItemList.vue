@@ -1,6 +1,6 @@
 <template>
   <div class="item-list row">
-    <h1>{{ header }}</h1>
+    <h1>Item list</h1>
 
     <div v-if="loading">
       Loading...
@@ -27,16 +27,6 @@
     components: {
       'item-tile': ItemTile,
     },
-    data() {
-      return {
-        header: 'Item list',
-        onSelectCallback: (item) => {
-          const selectedItem = item;
-
-          selectedItem.selected = !item.selected;
-        },
-      };
-    },
     props: {
       items: {
         type: Array,
@@ -45,6 +35,10 @@
       loading: {
         type: Boolean,
         default: false,
+      },
+      onSelectCallback: {
+        type: Function,
+        default: null,
       },
     },
   };

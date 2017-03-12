@@ -2,7 +2,10 @@
   <div class='item-cart'>
     <h1>Your items:</h1>
 
-    <item-list v-bind:items="items" v-bind:loading="loading" />
+    <item-list
+      v-bind:items="items"
+      v-bind:loading="loading"
+    />
   </div>
 </template>
 

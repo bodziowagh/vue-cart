@@ -1,16 +1,11 @@
 <template>
   <div class="item-list-section">
     <h1>Please select items from the list below:</h1>
-    <item-list v-bind:items="items" v-bind:loading="loading" />
-
-    <div class="actions row">
-      <button
-        class="submit-button"
-        v-on:click="() => submitItems(items)"
-      >
-        Submit
-      </button>
-    </div>
+    <item-list
+      v-bind:items="items"
+      v-bind:loading="loading"
+      v-bind:onSelectCallback="onSelectCallback"
+    />
   </div>
 </template>
 
@@ -28,6 +23,11 @@
     data: function () {
       return {
         loading: true,
+        onSelectCallback: (item) => {
+          itemsRef.child(item['.key']).update({
+            selected: !item.selected,
+          });
+        },
       };
     },
     mounted: function () {
@@ -37,11 +37,6 @@
     },
     firebase: {
       items: itemsRef,
-    },
-    methods: {
-      submitItems: () => {
-        // TODO
-      },
     },
   };
 </script>
