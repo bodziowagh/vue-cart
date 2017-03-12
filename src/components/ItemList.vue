@@ -1,5 +1,5 @@
 <template>
-  <div class="item-list">
+  <div class="item-list row">
     <h1>{{ header }}</h1>
 
     <div v-if="!items.length">
@@ -10,7 +10,7 @@
       Loading...
     </div>
 
-    <div class="item-container" v-for="item in items">
+    <div class="item-container col-xs-12 col-sm-4" v-for="item in items">
       <item-tile
         v-bind:item="item"
         v-bind:onSelectCallback="onSelectCallback"
