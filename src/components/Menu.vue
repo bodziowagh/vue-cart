@@ -1,9 +1,9 @@
 <template>
-  <div class="menu">
-    <router-link to="/item-list" class="tab">
+  <div class="menu row">
+    <router-link to="/item-list" class="tab col-xs-12 col-sm-6">
       Item List
     </router-link>
-    <router-link to="/item-cart" class="tab">
+    <router-link to="/item-cart" class="tab col-xs-12 col-sm-6">
       Item Cart
     </router-link>
   </div>
@@ -22,11 +22,11 @@
 
   .menu .tab {
     background-color: #ccc;
+    border: solid 1px #bbb;
     color: #000;
     padding: 15px 0;
     text-decoration: none;
     display: inline-block;
-    width: 49%;
     line-height: 50px;
     font-size: 26px;
 

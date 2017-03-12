@@ -2,15 +2,15 @@
   <div class="item-list row">
     <h1>{{ header }}</h1>
 
-    <div v-if="!items.length">
-      The list is empty
-    </div>
-
     <div v-if="loading">
       Loading...
     </div>
 
-    <div class="item-container col-xs-12 col-sm-4" v-for="item in items">
+    <div v-if="!loading && !items.length">
+      The list is empty
+    </div>
+
+    <div v-if="!loading" class="item-container col-xs-12 col-sm-4" v-for="item in items">
       <item-tile
         v-bind:item="item"
         v-bind:onSelectCallback="onSelectCallback"

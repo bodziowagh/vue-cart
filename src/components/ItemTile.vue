@@ -27,7 +27,8 @@
     display: inline-block;
     cursor: pointer;
     padding: 10px;
-    width: 200px;
+    width: 100%;
+    max-width: 280px;
     opacity: 0.7;
 
     transition: 500ms;
