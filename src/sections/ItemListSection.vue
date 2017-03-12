@@ -1,12 +1,11 @@
 <template>
   <div class="item-list-section">
     <h1>Please select items from the list below:</h1>
-    <item-list v-bind:items="items" v-bind:loading="false" />
+    <item-list v-bind:items="items" v-bind:loading="loading" />
 
     <div class="actions row">
       <button
         class="submit-button"
-        v-bind:disabled="isSubmitDisabled"
         v-on:click="() => submitItems(items)"
       >
         Submit
@@ -17,77 +16,31 @@
 
 <script>
   import ItemList from '@/components/ItemList';
+  import database from '../services/FirebaseService';
+
+  const itemsRef = database.ref('items');
 
   export default {
     name: 'item-cart',
     components: {
       'item-list': ItemList,
     },
-    data() {
+    data: function () {
       return {
-        items: [
-          {
-            selected: false,
-            name: 'My item 1',
-            image: 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg',
-          }, {
-            selected: false,
-            name: 'My item 2',
-            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg',
-          }, {
-            selected: false,
-            name: 'My item 3',
-            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/shop6.jpg',
-          }, {
-            selected: false,
-            name: 'My item 4',
-            image: 'https://assets.rbl.ms/4314213/980x.jpg',
-          }, {
-            selected: false,
-            name: 'My item 5',
-            image: 'https://i.ytimg.com/vi/lUaNo_L7AKU/hqdefault.jpg',
-          }, {
-            selected: false,
-            name: 'My item 5',
-            image: 'https://i.ytimg.com/vi/lUaNo_L7AKU/hqdefault.jpg',
-          }, {
-            selected: false,
-            name: 'My item 1',
-            image: 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg',
-          }, {
-            selected: false,
-            name: 'My item 2',
-            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg',
-          }, {
-            selected: false,
-            name: 'My item 3',
-            image: 'http://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/shop6.jpg',
-          }, {
-            selected: false,
-            name: 'My item 4',
-            image: 'https://assets.rbl.ms/4314213/980x.jpg',
-          }, {
-            selected: false,
-            name: 'My item 5',
-            image: 'https://i.ytimg.com/vi/lUaNo_L7AKU/hqdefault.jpg',
-          }, {
-            selected: false,
-            name: 'My item 5',
-            image: 'https://i.ytimg.com/vi/lUaNo_L7AKU/hqdefault.jpg',
-          },
-        ],
+        loading: true,
       };
     },
-    methods: {
-      submitItems: (items) => {
-        // TODO
-
-        console.log(items.filter(item => item.selected));
-      },
+    mounted: function () {
+      itemsRef.once('value', () => {
+        this.loading = false;
+      });
     },
-    computed: {
-      isSubmitDisabled: function () {
-        return !this.items.filter(item => item.selected).length;
+    firebase: {
+      items: itemsRef,
+    },
+    methods: {
+      submitItems: () => {
+        // TODO
       },
     },
   };
