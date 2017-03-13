@@ -15,7 +15,7 @@
   export default {
     name: 'item-tile',
     methods: {
-      onSelect: function () {
+      onSelect: function onSelect() {
         if (this.onSelectCallback) {
           this.onSelectCallback(this.item);
         }

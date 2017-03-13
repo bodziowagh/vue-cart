@@ -1,7 +1,5 @@
 <template>
   <div class="item-list row">
-    <h1>Item list</h1>
-
     <div v-if="loading">
       Loading...
     </div>
@@ -28,13 +26,13 @@
       'item-tile': ItemTile,
     },
     props: {
-      items: {
-        type: Array,
-        default: [],
-      },
       loading: {
         type: Boolean,
         default: false,
+      },
+      items: {
+        type: Array,
+        default: [],
       },
       onSelectCallback: {
         type: Function,
@@ -47,10 +45,6 @@
 <style scoped>
   h1 {
     font-weight: normal;
-  }
-
-  .item-list {
-
   }
 
   .item-list .item-container {

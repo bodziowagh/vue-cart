@@ -7,14 +7,14 @@
 </template>
 
 <script>
-import Menu from './components/Menu';
+  import Menu from './components/Menu';
 
-export default {
-  name: 'app',
-  components: {
-    'header-menu': Menu,
-  },
-};
+  export default {
+    name: 'app',
+    components: {
+      'header-menu': Menu,
+    },
+  };
 </script>
 
 <style>

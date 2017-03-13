@@ -1,9 +1,10 @@
 <template>
   <div class="item-list-section">
     <h1>Please select items from the list below:</h1>
+
     <item-list
+    v-bind:loading="loading"
       v-bind:items="items"
-      v-bind:loading="loading"
       v-bind:onSelectCallback="onSelectCallback"
     />
   </div>
@@ -11,7 +12,7 @@
 
 <script>
   import ItemList from '@/components/ItemList';
-  import database from '../services/FirebaseService';
+  import database from '@/services/FirebaseService';
 
   const itemsRef = database.ref('items');
 
@@ -20,23 +21,21 @@
     components: {
       'item-list': ItemList,
     },
-    data: function () {
-      return {
-        loading: true,
-        onSelectCallback: (item) => {
-          itemsRef.child(item['.key']).update({
-            selected: !item.selected,
-          });
-        },
-      };
+    data: () => ({
+      loading: true,
+      onSelectCallback: (item) => {
+        itemsRef.child(item['.key']).update({
+          selected: !item.selected,
+        });
+      },
+    }),
+    firebase: {
+      items: itemsRef,
     },
-    mounted: function () {
+    mounted: function mounted() {
       itemsRef.once('value', () => {
         this.loading = false;
       });
-    },
-    firebase: {
-      items: itemsRef,
     },
   };
 </script>
